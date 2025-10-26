@@ -63,6 +63,21 @@ find "${ROOTFS_DIR}/var/log/" -type f -exec cp /dev/null {} \;
 rm -f "${ROOTFS_DIR}/root/.vnc/private.key"
 rm -f "${ROOTFS_DIR}/etc/vnc/updateid"
 
+echo -n "Add user configuration files: "
+if [[ -d "${ROOTFS_DIR}/etc/xdg/labwc-greeter" ]]; then
+	for d in "${ROOTFS_DIR}/home/"* ; do
+		owner_id=$(stat -c '%u' "$d")
+		mkdir -p "$d/.config"
+		cp -r files/user/.* "$d/"
+		chown -R $owner_id "$d/.config"
+		mkdir -p "${ROOTFS_DIR}/etc/skel/.config"
+		cp -r files/user/.config/* "${ROOTFS_DIR}/etc/skel/.config/"
+	done
+		echo "Done"
+else
+		echo "Skipped"
+fi
+
 update_issue "$(basename "${EXPORT_DIR}")"
 install -m 644 "${ROOTFS_DIR}/etc/rpi-issue" "${ROOTFS_DIR}/boot/firmware/issue.txt"
 if ! [ -L "${ROOTFS_DIR}/boot/issue.txt" ]; then

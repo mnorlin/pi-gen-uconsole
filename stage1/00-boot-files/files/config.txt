@@ -39,13 +39,35 @@ disable_overscan=1
 # Run as fast as firmware / board allows
 arm_boost=1
 
-[cm4]
+[pi3]
+dtoverlay=clockworkpi-uconsole-cm3
+dtoverlay=vc4-kms-v3d
+dtparam=spi=on
+dtoverlay=spi-gpio35-39
+gpio=11=op,dh
+enable_uart=1
+
+[pi4]
 # Enable host mode on the 2711 built-in XHCI USB controller.
 # This line should be removed if the legacy DWC2 controller is required
 # (e.g. for USB device mode) or if USB support is not required.
-otg_mode=1
+dtoverlay=clockworkpi-uconsole
+dtoverlay=vc4-kms-v3d-pi4,cma-384
+dtparam=spi=on
+enable_uart=1
 
-[cm5]
-dtoverlay=dwc2,dr_mode=host
+[pi5]
+dtoverlay=clockworkpi-uconsole-cm5
+dtoverlay=vc4-kms-v3d-pi5,cma-384
+dtparam=uart0
+dtparam=pciex1
+dtparam=pciex1_gen=3
 
 [all]
+ignore_lcd=1
+max_framebuffers=2
+disable_overscan=1
+dtparam=audio=on
+dtoverlay=audremap,pins_12_13
+dtoverlay=dwc2,dr_mode=host
+dtparam=ant2
