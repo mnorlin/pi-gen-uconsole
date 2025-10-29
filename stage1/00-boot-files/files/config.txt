@@ -63,10 +63,10 @@ dtparam=pciex1
 dtparam=pciex1_gen=3
 
 [all]
-dtoverlay=dwc2,dr_mode=host
 ignore_lcd=1
 max_framebuffers=2
 disable_overscan=1
 dtparam=audio=on
 dtoverlay=audremap,pins_12_13
+dtoverlay=dwc2,dr_mode=host
 dtparam=ant2

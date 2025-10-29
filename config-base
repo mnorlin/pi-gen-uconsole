@@ -1,6 +1,6 @@
 # The name of the image to build with the current stage directories. Use this variable to set the root name of your OS, eg IMG_NAME=Frobulator. Export files in stages may add suffixes to IMG_NAME.
 # Default: raspios-$RELEASE-$ARCH, for example: raspios-trixie-armhf
-export IMG_NAME=uconsole
+export IMG_NAME=
 
 
 # The release version to build images against. Valid values are any supported Debian release. However, since different releases will have different sets of packages available, you'll need to either modify your stages accordingly, or checkout the appropriate branch. For example, if you'd like to build a bullseye image, you should do so from the bullseye branch.
@@ -17,7 +17,7 @@ TEMP_REPO=
 #   gz to deploy a gzipped image (.img.gz)
 #   xz to deploy a xzipped image (.img.xz)
 # Default: zip
-DEPLOY_COMPRESSION=none
+DEPLOY_COMPRESSION=zip
 
 # Setting to '1' enables the QEMU mode - creating an image that can be mounted via QEMU for an emulated environment. These images include "-qemu" in the image file name.
 # Default: 0
@@ -25,7 +25,7 @@ USE_QEMU=0
 
 # Default system locale.
 # Default: en_GB.UTF-8
-LOCALE_DEFAULT=
+LOCALE_DEFAULT=en_US.UTF-8
 
 # Setting the hostname to the specified value.
 # Default: raspberrypi
@@ -34,12 +34,12 @@ TARGET_HOSTNAME=uconsole
 # Default keyboard keymap.
 # To get the current value from a running system, run debconf-show keyboard-configuration and look at the keyboard-configuration/xkb-keymap value.
 # Default: gb
-KEYBOARD_KEYMAP=
+KEYBOARD_KEYMAP=us
 
 # Default keyboard layout.
 # To get the current value from a running system, run debconf-show keyboard-configuration and look at the keyboard-configuration/variant value.
 # Default:  'English (UK)'
-KEYBOARD_LAYOUT=
+KEYBOARD_LAYOUT="English (US)"
 
 # Default time zone.
 # To get the current value from a running system, look in /etc/timezone.
@@ -48,7 +48,7 @@ TIMEZONE_DEFAULT=
 
    
 # Sets the default WLAN regulatory domain and unblocks WLAN interfaces. This should be a 2-letter ISO/IEC 3166 country Code, i.e. GB
-WPA_COUNTRY=
+WPA_COUNTRY=SE
 
    
 # Setting to 1 will enable ssh server for remote log in. Note that if you are using a common password such as the defaults there is a high risk of attackers taking over you Raspberry Pi.
